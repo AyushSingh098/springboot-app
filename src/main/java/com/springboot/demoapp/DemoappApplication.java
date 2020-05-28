@@ -8,7 +8,8 @@ import org.springframework.data.couchbase.repository.config.EnableCouchbaseRepos
 
 @SpringBootApplication
 @EnableCouchbaseRepositories
-@ComponentScan(basePackages = {"com.springboot.demoapp.service"})
+//@ComponentScan(basePackages = {"com.springboot.demoapp.service"})
+@ComponentScan({ "com.springboot.demoapp.*" })
 public class DemoappApplication {
 
 	public static void main(String[] args) {

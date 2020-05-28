@@ -1,26 +1,20 @@
 package com.springboot.demoapp.controller;
 
+import com.springboot.demoapp.model.Student;
+import com.springboot.demoapp.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.HashMap;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.springboot.demoapp.model.Student;
-import com.springboot.demoapp.service.StudentService;
-
-@RestController
+@Controller
 public class StudentController {
 
-    /** The helper. */
     @Autowired
-    StudentService helper;
+    /** The helper. */
+    StudentService studentService;
 
     /**
      * Save user data.
@@ -30,7 +24,7 @@ public class StudentController {
      */
     @PostMapping("/user")
     private Student saveUserData(@RequestBody Student data) {
-        return helper.addUser(data);
+        return studentService.addUser(data);
     }
 
     /**
@@ -41,7 +35,7 @@ public class StudentController {
      */
     @GetMapping("/user/{id}")
     private Student getUserData(@PathVariable("id") String id) {
-        return helper.getUser(id);
+        return studentService.getUser(id);
     }
 
     /**
@@ -51,7 +45,7 @@ public class StudentController {
      */
     @GetMapping("/users")
     private List<Student> getAllUsersData() {
-        return helper.getAllUsers();
+        return studentService.getAllUsers();
     }
 
     /**
@@ -61,7 +55,7 @@ public class StudentController {
      */
     @DeleteMapping("/users")
     private HashMap<String, String> deleteAllUsersData() {
-        helper.deleteAllUsers();
+        studentService.deleteAllUsers();
         HashMap<String, String> map = new HashMap<>();
         map.put("Data", "Deleted");
         return map;
@@ -75,7 +69,7 @@ public class StudentController {
      */
     @DeleteMapping("/users/{name}")
     private HashMap<String, String> deleteUserDataByName(@PathVariable("name") String name) {
-        helper.deleteUserByName(name);
+        studentService.deleteUserByName(name);
         HashMap<String, String> map = new HashMap<>();
         map.put("Data Deleted with name", name);
         return map;
@@ -90,7 +84,7 @@ public class StudentController {
      */
     @PutMapping("/users/{name}")
     private Student updateUserData(@PathVariable("name") String name, @RequestBody Student data) {
-        return helper.updateUserData(name, data);
+        return studentService.updateUserData(name, data);
     }
 
 }

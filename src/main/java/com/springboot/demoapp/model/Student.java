@@ -1,18 +1,15 @@
 package com.springboot.demoapp.model;
 
-import java.io.Serializable;
-
+import com.couchbase.client.java.repository.annotation.Field;
+import com.couchbase.client.java.repository.annotation.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.couchbase.core.mapping.Document;
 
-import com.couchbase.client.java.repository.annotation.Id;
-import org.springframework.data.couchbase.core.mapping.Field;
-import org.springframework.data.couchbase.core.mapping.id.GeneratedValue;
-import org.springframework.data.couchbase.core.mapping.id.GenerationStrategy;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 
 @Document
 public class Student implements Serializable {
-{
+
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
@@ -30,26 +27,28 @@ public class Student implements Serializable {
      * @param name the name
      * @param dob the dob
      */
-	public Student(String docId, String id, String name, String dob) {
-    super();
-    this.docId = docId;
-    this.id = id;
-    this.name = name;
-    this.dob = dob;
+    public Student(String docId, String id, String name, String dob) {
+        super();
+        this.docId = docId;
+        this.id = id;
+        this.name = name;
+        this.dob = dob;
     }
 
     /** The doc id. */
     @Id
-    @GeneratedValue(strategy = GenerationStrategy.UNIQUE)
     @JsonIgnore
     private transient String docId;
 
+    @Field
     /** The id. */
     private String id;
 
+    @Field
     /** The name. */
     private String name;
 
+    @Field
     /** The dob. */
     private String dob;
 
@@ -59,8 +58,8 @@ public class Student implements Serializable {
      * @return the doc id
      */
     public String getDocId() {
-    return docId;
-}
+        return docId;
+    }
 
     /**
      * Sets the doc id.
@@ -68,8 +67,8 @@ public class Student implements Serializable {
      * @param docId the new doc id
      */
     public void setDocId(String docId) {
-    this.docId = docId;
-}
+        this.docId = docId;
+    }
 
     /**
      * Gets the id.
@@ -77,8 +76,8 @@ public class Student implements Serializable {
      * @return the id
      */
     public String getId() {
-    return id;
-}
+        return id;
+    }
 
     /**
      * Sets the id.
@@ -86,8 +85,8 @@ public class Student implements Serializable {
      * @param id the new id
      */
     public void setId(String id) {
-    this.id = id;
-}
+        this.id = id;
+    }
 
     /**
      * Gets the name.
@@ -95,8 +94,8 @@ public class Student implements Serializable {
      * @return the name
      */
     public String getName() {
-    return name;
-}
+        return name;
+    }
 
     /**
      * Sets the name.
@@ -104,8 +103,8 @@ public class Student implements Serializable {
      * @param name the new name
      */
     public void setName(String name) {
-    this.name = name;
-}
+        this.name = name;
+    }
 
     /**
      * Gets the dob.
@@ -113,8 +112,8 @@ public class Student implements Serializable {
      * @return the dob
      */
     public String getDob() {
-    return dob;
-}
+        return dob;
+    }
 
     /**
      * Sets the dob.
@@ -122,7 +121,6 @@ public class Student implements Serializable {
      * @param dob the new dob
      */
     public void setDob(String dob) {
-    this.dob = dob;
+        this.dob = dob;
+    }
 }
-}
-

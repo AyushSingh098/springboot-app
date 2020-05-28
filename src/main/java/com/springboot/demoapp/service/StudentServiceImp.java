@@ -1,14 +1,13 @@
 package com.springboot.demoapp.service;
 
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.springboot.demoapp.dao.StudentRepository;
 import com.springboot.demoapp.model.Student;
-import com.springboot.demoapp.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class StudentServiceImp implements StudentService{
@@ -17,8 +16,7 @@ public class StudentServiceImp implements StudentService{
     String docId = "USERDATA::";
 
     @Autowired
-    StudentRepository repo;
-
+    private StudentRepository repo;
 
     @Override
     /**
@@ -27,6 +25,7 @@ public class StudentServiceImp implements StudentService{
      * @param data the data
      * @return the user data
      */
+    @Transactional
     public Student addUser(Student data) {
         Student saveData = new Student();
         saveData.setDocId(docId + UUID.randomUUID().toString());
@@ -35,7 +34,7 @@ public class StudentServiceImp implements StudentService{
         saveData.setDob(data.getDob());
         return repo.save(saveData);
     }
-
+    @Transactional
     @Override
     /**
      * Gets the user.
@@ -47,7 +46,7 @@ public class StudentServiceImp implements StudentService{
         Student data = repo.findUserByName(name);
         return data;
     }
-
+    @Transactional
     @Override
     /**
      * Gets the all users.
@@ -58,7 +57,7 @@ public class StudentServiceImp implements StudentService{
         List<Student> findAll = repo.findAllUsers(docId + "%");
         return findAll;
     }
-
+    @Transactional
     @Override
     /**
      * Delete all users.
@@ -68,7 +67,7 @@ public class StudentServiceImp implements StudentService{
     public List<Student> deleteAllUsers() {
         return repo.deleteAllUserData();
     }
-
+    @Transactional
     @Override
     /**
      * Delete user by name.
@@ -79,7 +78,7 @@ public class StudentServiceImp implements StudentService{
     public List<Student> deleteUserByName(String name) {
         return repo.deleteUserDataByName(name);
     }
-
+    @Transactional
     @Override
     /**
      * Update user data.
@@ -95,7 +94,6 @@ public class StudentServiceImp implements StudentService{
         user.setDob(data.getDob());
         return repo.save(user);
     }
-
 
 }
 

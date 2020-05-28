@@ -1,33 +1,42 @@
 package com.springboot.demoapp;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.couchbase.config.AbstractCouchbaseConfiguration;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 public class CouchbaseConfiguration extends AbstractCouchbaseConfiguration {
 
+    /**
+     * Gets the bootstrap hosts.
+     *
+     * @return the bootstrap hosts
+     */
     @Override
-    protected String getScopeName() {
-        return super.getScopeName();
+    protected List<String> getBootstrapHosts() {
+        return Arrays.asList("localhost");
     }
 
+    /**
+     * Gets the bucket name.
+     *
+     * @return the bucket name
+     */
     @Override
-    protected Set<Class<?>> getInitialEntitySet() throws ClassNotFoundException {
-        return super.getInitialEntitySet();
+    protected String getBucketName() {
+        return "springboot-demo"; // enter the bucket name
     }
 
+    /**
+     * Gets the bucket password.
+     *
+     * @return the bucket password
+     */
     @Override
-    protected String getMappingBasePackage() {
-        return super.getMappingBasePackage();
-    }
-
-    @Override
-    public String getBucketName() {
-        return null;
+    protected String getBucketPassword() {
+        return "admin1234"; // enter the password
     }
 
     /**
@@ -36,17 +45,7 @@ public class CouchbaseConfiguration extends AbstractCouchbaseConfiguration {
      * @return the username
      */
     @Override
-    public String getConnectionString() {
-        return null;
-    }
-
-    @Override
-    public String getUserName() {
-        return "Admin";
-    }
-
-    @Override
-    public String getPassword() {
-        return "password";
+    protected String getUsername() {
+        return "springboot-demo"; // enter the username
     }
 }
