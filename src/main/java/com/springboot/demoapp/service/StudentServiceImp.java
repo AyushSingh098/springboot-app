@@ -8,10 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class StudentServiceImp implements StudentService{
-
-    /** The doc id. */
-    String docId = "1";
+public class StudentServiceImp implements StudentService
+{
 
     @Autowired
     private StudentRepository repo;
@@ -20,7 +18,6 @@ public class StudentServiceImp implements StudentService{
     public Student addUser(Student data)
     {
         Student saveData = new Student();
-        saveData.setDocId(docId);
         saveData.setId(data.getId());
         saveData.setName(data.getName());
         saveData.setDob(data.getDob());
@@ -28,24 +25,21 @@ public class StudentServiceImp implements StudentService{
     }
 
     @Override
-    public Student getUser(String name) {
+    public Student getUser(String name)
+    {
         Student data = repo.findUserByName(name);
         return data;
     }
 
     @Override
-    public List<Student> getAllUsers() {
-        List<Student> findAll = repo.findAllUsers(docId + "%");
-        return findAll;
-    }
-
-    @Override
-    public List<Student> deleteAllUsers() {
+    public List<Student> deleteAllUsers()
+    {
         return repo.deleteAllUserData();
     }
 
     @Override
-    public List<Student> deleteUserByName(String name) {
+    public List<Student> deleteUserByName(String name)
+    {
         return repo.deleteUserDataByName(name);
     }
 

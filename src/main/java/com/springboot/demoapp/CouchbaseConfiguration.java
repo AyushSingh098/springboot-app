@@ -10,22 +10,26 @@ import java.util.List;
 public class CouchbaseConfiguration extends AbstractCouchbaseConfiguration {
 
     @Override
-    protected List<String> getBootstrapHosts() {
+    protected List<String> getBootstrapHosts()
+    {
         return Arrays.asList("localhost");
     }
 
     @Override
-    protected String getBucketName() {
-        return "springbootapp"; // enter the bucket name
+    protected String getBucketName()
+    {
+        return "springbootapp";
     }
 
     @Override
-    protected String getBucketPassword() {
-        return "admin1234"; // enter the password
+    protected String getBucketPassword()
+    {
+        return "admin1234";
     }
 
     @Override
-    protected String getUsername() {
-        return "springbootapp"; // enter the username
+    protected String getUsername()
+    {
+        return "springbootapp";
     }
 }

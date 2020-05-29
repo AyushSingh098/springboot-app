@@ -12,8 +12,6 @@ public interface StudentService {
 
     public Student getUser(String name);
 
-    public List<Student> getAllUsers();
-
     public List<Student> deleteAllUsers();
 
     public List<Student> deleteUserByName(String name);
